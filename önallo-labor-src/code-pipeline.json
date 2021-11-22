@@ -1,0 +1,91 @@
+{
+  "pipeline": {
+      "name": "BoardgamesServiceCICDPipeline",
+      "roleArn": "arn:aws:iam::105667908449:role/BoardgamesServiceCodePipelineServiceRole",
+      "stages": [
+        {
+          "name": "Source",
+          "actions": [
+            {
+              "inputArtifacts": [
+    
+              ],
+              "name": "Source",
+              "actionTypeId": {
+                "category": "Source",
+                "owner": "AWS",
+                "version": "1",
+                "provider": "CodeCommit"
+              },
+              "outputArtifacts": [
+                {
+                  "name": "BoardgamesService-SourceArtifact"
+                }
+              ],
+              "configuration": {
+                "BranchName": "master",
+                "RepositoryName": "BoardgamesService-Repository"
+              },
+              "runOrder": 1
+            }
+          ]
+        },
+        {
+          "name": "Build",
+          "actions": [
+            {
+              "name": "Build",
+              "actionTypeId": {
+                "category": "Build",
+                "owner": "AWS",
+                "version": "1",
+                "provider": "CodeBuild"
+              },
+              "outputArtifacts": [
+                {
+                  "name": "BoardgamesService-BuildArtifact"
+                }
+              ],
+              "inputArtifacts": [
+                {
+                  "name": "BoardgamesService-SourceArtifact"
+                }
+              ],
+              "configuration": {
+                "ProjectName": "BoardgamesServiceCodeBuildProject"
+              },
+              "runOrder": 1
+            }
+          ]
+        },
+        {
+          "name": "Deploy",
+          "actions": [
+            {
+              "name": "Deploy",
+              "actionTypeId": {
+                "category": "Deploy",
+                "owner": "AWS",
+                "version": "1",
+                "provider": "ECS"
+              },
+              "inputArtifacts": [
+                {
+                  "name": "BoardgamesService-BuildArtifact"
+                }
+              ],
+              "configuration": {
+                "ClusterName": "Boardgames-Cluster",
+                "ServiceName": "Boardgames-Service",
+                "FileName": "imagedefinitions.json"
+              }
+            }
+          ]
+        }
+      ],
+      "artifactStore": {
+        "type": "S3",
+        "location": "boardgames-artifacts"
+      }
+  }
+}

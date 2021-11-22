@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+
+    regisztrációs oldalhoz köthető megerősítő oldal, ahol az email-ben kapott megerősitő kódot kell megadni
+    a sikeres regisztrációhoz
+    Az lenti JavaScript-kód az Amazon Cognito JavaScript SDK-t használja ehhez a felhasználó nevében.
+  -->
+  <head>
+    <title>Társasjáték gyűjtemény regisztráció</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="js/aws-cognito-sdk.min.js"></script>
+    <script src="js/amazon-cognito-identity.min.js"></script>
+  </head>
+  <body style="background-color:#defae0">
+    <br>
+    <div class="container">
+      <h4>Add meg az e-mailben kapott megerősítő kódot. <br>Aztán jelentkezzen be a főoldalon<h4>
+      <form id="userDetails">
+        <div class="form-group">
+          <label for="confirmCode">Megerősítő kód:</label>
+          <input type="number" class="form-control" id="confirmCode" placeholder="Add meg a megerősítő kódot" name="confirmCode">
+        </div>
+        <button type="submit" class="btn btn-success">Megerősít</button>
+      </form>
+    </div>
+     <div style="text-align: center">
+      <img src="https://boardgamescollection.s3.amazonaws.com/like/images+(1).png" width="500" height="300px" align="center">
+    </div>
+
+  </body>
+
+  <script>
+
+  var cognitoUserPoolId = 'us-east-1_0aQ5mIVym';  
+  var cognitoUserPoolClientId = '7pstkmtiqq7vsj9t0mpkula1p2';
+
+  $(document).on('click', '.btn-success', function(event) {
+    event.preventDefault();
+
+    var confirmCode = document.getElementById('confirmCode').value;
+
+    var poolData = {
+      UserPoolId : cognitoUserPoolId,
+      ClientId : cognitoUserPoolClientId
+    };
+
+    var userName = localStorage.getItem('email');
+
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    var userData = {
+        Username : userName,
+        Pool : userPool
+    };
+
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    cognitoUser.confirmRegistration(confirmCode, true, function(err, result) {
+        if (err) {
+            alert(err.message);
+            return;
+        }
+        window.location.replace("index.html");
+    });
+
+  });
+  </script>
+</html>

@@ -1,0 +1,32 @@
+{
+  "family": "boardgamesservice",
+  "cpu": "256",
+  "memory": "512",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "executionRoleArn": "arn:aws:iam::105667908449:role/BoardgamesCoreStack-EcsServiceRole-1MSNQQBY3U7DE",
+  "taskRoleArn": "arn:aws:iam::105667908449:role/BoardgamesCoreStack-ECSTaskRole-1DWEC1LHGY2VF",
+  "containerDefinitions": [
+    {
+      "name": "Boardgames-Service",
+      "image": "105667908449.dkr.ecr.us-east-1.amazonaws.com/boardgames/service:latest",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "http"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "boardgames-logs",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "awslogs-boardgames-service"
+        }
+      },
+      "essential": true
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+    "TableName": "BoardgamesTable",
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    },
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "BoardgamesId",
+        "AttributeType": "S"
+      },
+      {
+        "AttributeName": "ChildAdult",
+        "AttributeType": "S"
+      },
+      {
+        "AttributeName": "GameLength",
+        "AttributeType": "S"
+      }
+    ],
+    "KeySchema": [
+      {
+        "AttributeName": "BoardgamesId",
+        "KeyType": "HASH"
+      }
+    ],
+    "GlobalSecondaryIndexes": [
+      {
+        "IndexName": "GameLengthIndex",
+        "KeySchema": [
+          {
+            "AttributeName": "GameLength",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "BoardgamesId",
+            "KeyType": "RANGE"
+          }
+        ],
+        "Projection": {
+          "ProjectionType": "ALL"
+        },
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      },
+      {
+        "IndexName": "ChildAdultIndex",
+        "KeySchema": [
+          {
+            "AttributeName": "ChildAdult",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "BoardgamesId",
+            "KeyType": "RANGE"
+          }
+        ],
+        "Projection": {
+          "ProjectionType": "ALL"
+        },
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      }
+    ]
+  }
+  

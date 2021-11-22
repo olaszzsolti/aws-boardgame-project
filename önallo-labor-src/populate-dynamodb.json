@@ -1,0 +1,436 @@
+{
+    "BoardgamesTable" : [
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "a901bb08-1985-42f5-bb77-27439ac14300"
+                },
+                "Name" : {
+                   "S": "Azul"
+                },
+                "Type" : {
+                   "S": "Családi"
+                },
+                "Description" : {
+                   "S": "Az Azul 2018-ban elnyerte a Spiel des Jahres díjat (Az év játéka), nyilván nem véletlenül. A játék könnyen érthető, így könnyen tanulható is, ugyanakkor olyan mélységgel rendelkezik, amivel sokat látott gémereket is képes maga köré ültetni, és persze megvan benne az a bizonyos extra. Központban az esztétika és ezt valahogy nagyon átélhetően sikerült visszaadni. Ahogy kiválasztjuk a legszebb csempéket (ezek egyébként vaskos bakelit lapkák, fényesek, színesek és többségük díszített is), ahogy elrendezgetjük őket a játéktáblánkon, ahogy szép lassan kialakulnak a színes oszlopok és sorok. Olcsó közhelynek tűnhet, de igazán csak az értheti, mi ez a bizonyos extra, aki játszott már vele."
+                },
+                "Year" : {
+                   "N": "2017"
+                },
+                "ChildAdult" : {
+                   "S": "Mindkettő"
+                },
+                "GameLength" : {
+                   "S": "Közepes"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/azul.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/azul.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "b6d16e02-6aeb-413c-b457-321151bb403d"
+                },
+                "Name" : {
+                   "S": "Avalon"
+                },
+                "Type" : {
+                   "S": "Parti"
+                },
+                "Description" : {
+                   "S": "Az Avalon társasjátékban Artúr király birodalmába csöppenek a játékosok, ahol a jó és a gonosz erői csapnak össze. Artúr király célja megőrizni az uralmat, hogy megóvja Britanniát a pusztulástól, miközben Mordred és bérencei minden erővel azon dolgoznak, hogy megbuktassák Artúrt és átvegyék az irányítást a királyságban. Az Avalon rejtett szerepekkel zajlik, így a játékosok nem tudnak egymás kilétéről és szándékairól, csak pár kivételes szereplő ismerheti a titkokat, mint például Merlin, de lehet, ha az ő ereje sem elegendő, hogy megóvja a királyságot a bukástól."
+                },
+                "Year" : {
+                   "N": "2003"
+                },
+                "ChildAdult" : {
+                   "S": "Felnőtt"
+                },
+                "GameLength" : {
+                   "S": "Közepes"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/avalon.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/avalon.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "c0684344-1eb7-40e7-b334-06d25ac9268c"
+                },
+                "Name" : {
+                   "S": "Pictomania"
+                },
+                "Type" : {
+                   "S": "Rajzolós"
+                },
+                "Description" : {
+                   "S": "Tehát mi a feladat? Egyre nehezedő szavak közül a kisorsolt szavamat minél gyorsabban, de mégis felismerhetően lerajzolnom, majd tippelnem a játékos társaim hasonlóan megalkotott szavaira. Egyszerűen hangzik ugye? Hát nem is mindig az, de ezért lesz a Skicc egy igazán jó partijáték."
+                },
+                "Year" : {
+                   "N": "2018"
+                },
+                "ChildAdult" : {
+                   "S": "Gyerek"
+                },
+                "GameLength" : {
+                   "S": "Rövid"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/pictomania.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/pictomania.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "da5303ae-5aba-495c-b5d6-eb5c4a66b941"
+                },
+                "Name" : {
+                   "S": "Concept"
+                },
+                "Type" : {
+                   "S": "Asszociációs"
+                },
+                "Description" : {
+                   "S": "A Concept egy egészen rendhagyó asszociációs játék. Nem mondunk ki szavakat, nem rajzolunk dolgokat, hanem egy nagy adag piktogram meg egy marék apró kocka segítségével próbálunk átadni szavakat, szókapcsolatokat, szólásokat. A feladványok nehézsége választható, így a „méhecske” és a „ki korán kel, aranyat lel” egyformán lehet feladvány – persze jó eséllyel nem ugyanabban a játszmában. Órákon keresztül el lehet vele lenni, és általában eljön az a pont, hogy már mindenki valami extra őrültséget akar a kis képek segítségével elmutogatni a többieknek."
+                },
+                "Year" : {
+                   "N": "2013"
+                },
+                "ChildAdult" : {
+                   "S": "Felnőtt"
+                },
+                "GameLength" : {
+                   "S": "Közepes"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/concept.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/concept.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "a901bb08-1985-42f5-bb77-27439ac14303"
+                },
+                "Name" : {
+                   "S": "Spicy"
+                },
+                "Type" : {
+                   "S": "Taktikai"
+                },
+                "Description" : {
+                   "S": "A legenda igaz, a három nagy macska klán új harcra készül fel. Ám ez a harc nem egy vérre menő küzdelem. Nem, ez sokkal erőssebb annál, ez a csípős kihívás. Csak egy dolog fontosabb annál, minthogy mennyi csípőset tudsz megenni (mert ugye a nagy harcosok ismérve, hogy jól bírják a legerősebb ételeket is), hogy a többiek elhigyjék, hogy amit megeszel az igazán erős. 5-ös vaszabi, 7-es bors, vagy 10-es csili? Ha jól blöffölsz, a dicsőség nem marad el."
+                },
+                "Year" : {
+                   "N": "2020"
+                },
+                "ChildAdult" : {
+                   "S": "Mindkettő"
+                },
+                "GameLength" : {
+                   "S": "Rövid"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/spicy.png"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/spicy.png"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "3f0f196c-4a7b-43af-9e29-6522a715342d"
+                },
+                "Name" : {
+                   "S": "Dixit"
+                },
+                "Type" : {
+                   "S": "Asszociációs"
+                },
+                "Description" : {
+                   "S": "A Dixit társasjátékban a cél, hogy megfejtsük a játékostársaink gondolatait és látásmódját. A játékot az kezdi, akinek a leghamarabb mondanivalója van valamelyik kezében tartott kártyáról, ő lesz az első mesélő. A mesélő letesz egy kártyát lefordítva és mond róla valamit, lehet az egy egyszerű szó, de akár egy történet is, a lényeg, hogy valamilyen utalást adjon a többieknek arról, mi látható a kártyán, amit kijátszott. Azonban vigyáznia kell, nem adhat túl egyértelmű utalást sem, ha pontokat szeretne. Ezután a többi játékos megpróbál a saját kezében olyan kártyát választani és szintén kijátszani, ami szorosan összekapcsolható a mesélő által elhangzottakkal. Miután minden játékos kijátszott egy lapot, a mesélő megkeveri azokat, majd felfordítva elhelyezi őket egymás mellé. Ezt követően a cél eltalálni, melyik volt a mesélő kártyája. Ha sikerül, pontokkal gazdagodhatnak a játékosok és akkor is, ha képesek voltak megtéveszteni a játékostársakat, hogy a mesélő kártyája helyett az általuk kijátszottat válasszák. Minden fordulóban új mesélő lesz, így mindenki látásmódjáról kiderül egy aprócska szelet a játék során."
+                },
+                "Year" : {
+                   "N": "2008"
+                },
+                "ChildAdult" : {
+                   "S": "Mindkettő"
+                },
+                "GameLength" : {
+                   "S": "Rövid"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/dixit.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/dixit.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "ac3e95f3-eb40-4e4e-a605-9fdd0224877c"
+                },
+                "Name" : {
+                   "S": "7 Csoda"
+                },
+                "Type" : {
+                   "S": "Taktikai"
+                },
+                "Description" : {
+                   "S": "A 7csoda társasjátékban minden játékos egy ókori civilizációt fog felépíteni a játék három korszaka során, egészen az alapoktól indulva. A játékosok draftolás (kártyaválasztás) segítségével fognak minden fordulóban hat-hat kártyát szerezni egyesével, amelyek az ókori civilizációk alapjait képezik. A legfontosabb nyersanyagtermelő-helyek mellett, kulturális, tudományos épületek emelkednek majd ki a földből, amelyek mind növelik a birodalmak dicső fényét. Ezek fölé magasodik majd minden civilizáció monumentális csodája, amely megkoronázza az addigi munkát. A játékosoknak viszont ennél sokkal többre is figyelniük kell, hiszen egy karnyújtásnyi távolságra újabb és újabb birodalmak körvonalazódnak, amelyek potenciális veszélyt jelenthetnek, szóval a katonaság fejlesztése sem elhanyagolható."
+                },
+                "Year" : {
+                   "N": "2010"
+                },
+                "ChildAdult" : {
+                   "S": "Felnőtt"
+                },
+                "GameLength" : {
+                   "S": "Közepes"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/csoda7.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/csoda7.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "a901bb08-1985-42f5-bb77-27439ac14302"
+                },
+                "Name" : {
+                   "S": "Mysterium"
+                },
+                "Type" : {
+                   "S": "Taktikai"
+                },
+                "Description" : {
+                   "S": "A Mysterium társasjátékban a játékosok médiumok és egy szellem bőrébe bújnak (bár az utóbbi, azért valljuk be elég nehézkes a szó szoros értelemben) egy szeánsz során, hogy feltárják egy régen elfeledett gyilkosság történéseit és megtalálják a tettest. A médiumok és a szellem közösen dolgoznak a játék során, de ettől eltekintve mégis két teljesen különálló csoportot alkotnak, két teljesen eltérő síkban és létszámban. A játék során a nyugodni nem tudó szellem látomásokat juttat el a médiumokhoz, hogy tudassa velük, milyen helyen halt meg, ki volt a gyilkosa és milyen tárggyal okozták a halálát. A látomáskártyák nagyon hasonlítanak a Dixit társasjátékban látott kártyákra, sokszor elvont festmények, amelyeket a szellemnek össze kell kötnie a gyanúsítottakkal. A médiumok célja megfejteni a látomásokat és megtalálni a tényleges tettest, hogy a szellem végre örök nyugodalomra térhessen és elhagyja a kastély falait. Elsőre ez nem hangzik annyira nehéznek, van viszont egy apró bökkenő, mivel a tragikus eset nagyon régen történt, ezért a szellem ereje már nagyon gyenge, a sokk hatás miatt pedig csak homályos emlékei vannak haláláról, ezért mindegyik médiumnak különböző személyekről, helyszínekről és tárgyakról küld látomásokat, számára is csak a szeánsz utolsó óráiban tisztázódik ki volt a tényleges tettes."
+                },
+                "Year" : {
+                   "N": "2015"
+                },
+                "ChildAdult" : {
+                   "S": "Felnőtt"
+                },
+                "GameLength" : {
+                   "S": "Hosszú"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/mysterium.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/mysterium.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "0e37d916-f960-4772-a25a-01b762b5c1bd"
+                },
+                "Name" : {
+                   "S": "Bang"
+                },
+                "Type" : {
+                   "S": "Vadnyugati, Taktikai"
+                },
+                "Description" : {
+                   "S": "A Bang! egy olyan kártyajáték, amelyben minden játékosnak van egy titkos szerepe, ezektől függően pedig különböző feladatai. A játék során a banditáknak célja lelőni a seriffet, ameddig a seriff és segéde próbálja az ellenkezőjét tenni, az árnyak között viszont megbújnak renegátok is, akiknek célja, hogy mindenki elhulljon, kivéve őket. Mivel a játékosok kiléte rejtett, így egyik játékos sem fogja tudni, hogy az asztal túloldalán ülő játékostárs szövetséges vagy éppenséggel ellenség, az egyedüli személy a seriff, akit mindenki ismer a városban, ő bátran viseli a csillagját, egészen addig, ameddig egy golyó át nem üti azt Minden pisztolyhős a titkos szerepe mellett egy-egy teljesen egyedi karakterrel kezdi a játékot, amelynek különleges képességei segíthetnek a célok elérésében. A játék során aztán ezek mellé újabb eszközök és fegyverek kerülhetnek, hogy a vadnyugati hírnév mellé némi átütőerő is társuljon."
+                },
+                "Year" : {
+                   "N": "2002"
+                },
+                "ChildAdult" : {
+                   "S": "Felnőtt"
+                },
+                "GameLength" : {
+                   "S": "Közepes"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/bang.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/bang.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "4e53920c-505a-4a90-a694-b9300791f0ae"
+                },
+                "Name" : {
+                   "S": "Kingdomino"
+                },
+                "Type" : {
+                   "S": "Stratégiai, Dominó"
+                },
+                "Description" : {
+                   "S": "Elolvasva a játék címét, azért már lehet egy sanda gyanúnk, hogy miként fognak kirajzolódni a búzatáblák, erdők és tengerek a királyságunkon belül. A játék gyors fordulókra oszlik, amelyek során minden királyjelölt egy-egy domino lapkával fogja bővíteni a királyságát. Első ránézésre azért nem találunk olyan sok hasonlóságot a lapkákon, ha összevetjük őket a klasszikus dominoval, mindössze annyit, hogy két részre vannak osztva. A lehelyezésük, ami hasonló, ehhez persze nem kell ismerni egyáltalán a dominot. Csak észben kell tartanunk, hogy legalább egy oldalának passzolnia kell egy már korábban lehelyezett domino lapkához. Erdő mellé erdő, búzatábla mellé búzatábla és így tovább. A játék egészen addig tart, ameddig minden lapka el nem fogyott és mindenki előtt nincs egy várhatóan 5x5-ös királyság (7x7, ha ketten játszunk)."
+                },
+                "Year" : {
+                   "N": "2016"
+                },
+                "ChildAdult" : {
+                   "S": "Gyerek"
+                },
+                "GameLength" : {
+                   "S": "Közepes"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/kingdomino.png"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/kingdomino.png"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "a68db521-c031-44c7-b5ef-bfa4c0850e2a"
+                },
+                "Name" : {
+                   "S": "Everdell – Az Örökfa árnyékában"
+                },
+                "Type" : {
+                   "S": "Phoenix"
+                },
+                "Description" : {
+                   "S": "Különleges élet rejlik Gildin varázslatos völgyének, az Örökvölgynek rejtekében. A hatalmas fáiról, életet adó forrásairól, és zöldellő mezejéről híres erdei birodalomban az erdőlakó állatok közössége folyamatosan gyarapodik. De nem volt ez mindig így! Örökfark Kurszán, a bátor kisegér, életét kockáztatva vezette barátait az Örökfa árnyékába. Most pedig itt van az ideje a gyűjtögetésnek, hogy az eddig felfedezetlen területen új városkák épüljenek. Az Everdellben a játékosok szorgos állatkák bőrébe bújva gyűjtögetnek, és az összeszedett kavicsokból, gyantából és faágakból épületeket építenek. A játékosok munkáskáik lehelyezésével nyersanyagokat, épületeket, vagy erdőlakókat gyűjtögetnek, vagy a már készletükben lévő kártyákat nyersanyagokért cserébe megvásárolják."
+                },
+                "Year" : {
+                   "N": "2018"
+                },
+                "ChildAdult" : {
+                   "S": "Mindkettő"
+                },
+                "GameLength" : {
+                   "S": "Közepes"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/everdell.png"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/everdell.png"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       },
+       {
+          "PutRequest": {
+             "Item": {
+                "BoardgamesId" : {
+                   "S": "a901bb08-1985-42f5-bb77-27439ac14306"
+                },
+                "Name" : {
+                   "S": "Pandemic"
+                },
+                "Type" : {
+                   "S": "Családi"
+                },
+                "Description" : {
+                   "S": "A Pandemic társasjátékban egy járványelhárító specialista csapat tagjait alakítják a játékosok, akiknek célja, hogy közös erővel megtalálják a vírusok ellenszereit és meggátolják a globális pusztulást. Ehhez be kell utazni a világot, kezelni vagy karanténba zárni a kialakult gócpontokat, majd a lehető legyorsabban eljuttatni az ellenszer kifejlesztéséhez szükséges kártyákat az egyik kutatóállomásra. A Pandemicnek több változata létezik, a Pandemic - Pengeélen és a Pandemic – A labor kiegészítők sokszínűbbé teszik a játékot és olyan játékelemeket vezetnek be, amelyek teljesen megcsavarják és felfrissítik a játékmenetet. Megjelenik az 5. vírus, a bioterrorista, de betekinthetünk akár a kutatólaborba is, ahol az ellenszérum készül."
+                },
+                "Year" : {
+                   "N": "2008"
+                },
+                "ChildAdult" : {
+                   "S": "Mindkettő"
+                },
+                "GameLength" : {
+                   "S": "Hosszú"
+                },
+                "ThumbImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/pandemic.jpg"
+                },
+                "ProfileImageUri" : {
+                   "S": "https://boardgamescollection.s3.amazonaws.com/k%C3%A9pek/pandemic.jpg"
+                },
+                "Likes" : {
+                  "N": "0"
+                }
+             }
+          }
+       }
+    ]
+ }

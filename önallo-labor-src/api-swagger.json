@@ -1,0 +1,400 @@
+{
+    "swagger": 2.0,
+    "info": {
+        "title": "BoardgamesApi"
+    },
+    "securityDefinitions": {
+        "BoardgamesUserPoolAuthorizer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "x-amazon-apigateway-authtype": "cognito_user_pools",
+            "x-amazon-apigateway-authorizer": {
+                "type": "COGNITO_USER_POOLS",
+                "providerARNs": [
+                    "arn:aws:cognito-idp:us-east-1:105667908449:userpool/us-east-1_0aQ5mIVym"
+                ]
+            }
+        }
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "connectionType": "VPC_LINK",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "connectionId": "o8o12v",
+                    "httpMethod": "GET",
+                    "type": "HTTP_PROXY",
+                    "uri": "http://boardgames-nlb-891146f8327f471a.elb.us-east-1.amazonaws.com/"
+                }
+            },
+            "options": {
+                "summary": "CORS support",
+                "description": "Enable CORS by returning correct headers\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CORS"
+                ],
+                "x-amazon-apigateway-integration": {
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\n  \"statusCode\" : 200\n}\n"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{}\n"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/boardgames": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "connectionType": "VPC_LINK",
+                    "connectionId": "o8o12v",
+                    "httpMethod": "GET",
+                    "type": "HTTP_PROXY",
+                    "uri": "http://boardgames-nlb-891146f8327f471a.elb.us-east-1.amazonaws.com/boardgames",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    }
+                }
+            },
+            "options": {
+                "summary": "CORS support",
+                "description": "Enable CORS by returning correct headers\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CORS"
+                ],
+                "x-amazon-apigateway-integration": {
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\n  \"statusCode\" : 200\n}\n"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{}\n"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/boardgames/{boardgamesId}": {
+            "get": {
+                "parameters": [{
+                    "name": "boardgamesId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "requestParameters": {
+                        "integration.request.path.boardgamesId": "method.request.path.boardgamesId"
+                    },
+                    "connectionType": "VPC_LINK",
+                    "connectionId": "o8o12v",
+                    "httpMethod": "GET",
+                    "type": "HTTP_PROXY",
+                    "uri": "http://boardgames-nlb-891146f8327f471a.elb.us-east-1.amazonaws.com/boardgames/{boardgamesId}",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    }
+                }
+            },
+            "options": {
+                "summary": "CORS support",
+                "description": "Enable CORS by returning correct headers\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CORS"
+                ],
+                "x-amazon-apigateway-integration": {
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\n  \"statusCode\" : 200\n}\n"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{}\n"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/boardgames/{boardgamesId}/like": {
+            "post": {
+                "parameters": [{
+                    "name": "boardgamesId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "BoardgamesUserPoolAuthorizer": [
+
+                    ]
+                }],
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.path.baordgamesId": "method.request.path.boardgamesId"
+                    },
+                    "connectionType": "VPC_LINK",
+                    "connectionId": "o8o12v",
+                    "httpMethod": "POST",
+                    "security": [{
+                        "BoardgamesUserPoolAuthorizer": [
+
+                        ]
+                    }],
+                    "type": "HTTP_PROXY",
+                    "uri": "http://boardgames-nlb-891146f8327f471a.elb.us-east-1.amazonaws.com/baordgames/{boardgamesId}/like",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    }
+                }
+            },
+            "options": {
+                "summary": "CORS support",
+                "description": "Enable CORS by returning correct headers\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CORS"
+                ],
+                "x-amazon-apigateway-integration": {
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\n  \"statusCode\" : 200\n}\n"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{}\n"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

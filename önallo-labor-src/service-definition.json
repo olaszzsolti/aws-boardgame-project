@@ -1,0 +1,30 @@
+{
+  "serviceName": "Boardgames-Service",
+  "cluster": "Boardgames-Cluster",
+  "launchType": "FARGATE",
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 0
+  },
+  "desiredCount": 1,
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "assignPublicIp": "DISABLED",
+      "securityGroups": [
+        "sg-08caca7603fba92b9"
+      ],
+      "subnets": [
+        "subnet-04a3f81e25ca6071a",
+        "subnet-0d786e72a53178108"
+      ]
+    }
+  },
+  "taskDefinition": "boardgamesservice",
+  "loadBalancers": [
+    {
+      "containerName": "Boardgames-Service",
+      "containerPort": 8080,
+      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:105667908449:loadbalancer/net/boardgames-nlb/891146f8327f471a"
+    }
+  ]
+}

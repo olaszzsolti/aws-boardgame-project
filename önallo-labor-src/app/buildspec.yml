@@ -1,0 +1,28 @@
+
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t boardgames/service:latest .
+      # megtaggeli az imaget, hogy könnyen feltudja pusholni ECR-be
+      - docker tag boardgames/service:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/boardgames/service:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image..
+      # Imaget pusholja ECR-be
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/boardgames/service:latest
+      - echo Completed pushing Docker image. Deploying Docker image to AWS Fargate on `date`
+      # Létrehozza az az artifact fajlokat, amik tartalmazzák az image nevét, helyét
+      # AWS CodePipelinehoz kell, ami automatikus deployolja a konténert ECS-be.
+      - printf '[{"name":"Boardgames-Service","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/boardgames/service:latest > imagedefinitions.json
+artifacts:
+
+  files: imagedefinitions.json

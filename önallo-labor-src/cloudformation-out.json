@@ -1,0 +1,96 @@
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:us-east-1:105667908449:stack/BoardgamesCoreStack/46302d60-463b-11ec-841d-123567fb5e39", 
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            }, 
+            "Description": "Ez a stack deployolja a hálózati infrastrukturát és IAM Role-okat amik az AWS Fargaten futó szolgáltatáshoz szükségesek.", 
+            "Tags": [], 
+            "Outputs": [
+                {
+                    "Description": "REPLACE_ME_ACCOUNT_ID", 
+                    "ExportName": "BoardgamesCoreStack:CurrentAccount", 
+                    "OutputKey": "CurrentAccount", 
+                    "OutputValue": "105667908449"
+                }, 
+                {
+                    "Description": "REPLACE_ME_SECURITY_GROUP_ID", 
+                    "ExportName": "BoardgamesCoreStack:FargateContainerSecurityGroup", 
+                    "OutputKey": "FargateContainerSecurityGroup", 
+                    "OutputValue": "sg-08caca7603fba92b9"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PUBLIC_SUBNET_ONE", 
+                    "ExportName": "BoardgamesCoreStack:PublicSubnetOne", 
+                    "OutputKey": "PublicSubnetOne", 
+                    "OutputValue": "subnet-0d72bc64796017b99"
+                }, 
+                {
+                    "Description": "REPLACE_ME_ECS_TASK_ROLE_ARN", 
+                    "ExportName": "BoardgamesCoreStack:ECSTaskRole", 
+                    "OutputKey": "ECSTaskRole", 
+                    "OutputValue": "arn:aws:iam::105667908449:role/BoardgamesCoreStack-ECSTaskRole-1DWEC1LHGY2VF"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PRIVATE_SUBNET_TWO", 
+                    "ExportName": "BoardgamesCoreStack:PrivateSubnetTwo", 
+                    "OutputKey": "PrivateSubnetTwo", 
+                    "OutputValue": "subnet-0d786e72a53178108"
+                }, 
+                {
+                    "Description": "REPLACE_ME_REGION", 
+                    "ExportName": "BoardgamesCoreStack:CurrentRegion", 
+                    "OutputKey": "CurrentRegion", 
+                    "OutputValue": "us-east-1"
+                }, 
+                {
+                    "Description": "REPLACE_ME_VPC_ID", 
+                    "ExportName": "BoardgamesCoreStack:VPCId", 
+                    "OutputKey": "VPCId", 
+                    "OutputValue": "vpc-08b369dc73752a043"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PUBLIC_SUBNET_TWO", 
+                    "ExportName": "BoardgamesCoreStack:PublicSubnetTwo", 
+                    "OutputKey": "PublicSubnetTwo", 
+                    "OutputValue": "subnet-07fc1057d65480c48"
+                }, 
+                {
+                    "Description": "REPLACE_ME_CODEBUILD_ROLE_ARN", 
+                    "ExportName": "BoardgamesCoreStack:BoardgamesServiceCodeBuildServiceRole", 
+                    "OutputKey": "CodeBuildRole", 
+                    "OutputValue": "arn:aws:iam::105667908449:role/BoardgamesServiceCodeBuildServiceRole"
+                }, 
+                {
+                    "Description": "REPLACE_ME_CODEPIPELINE_ROLE_ARN", 
+                    "ExportName": "BoardgamesCoreStack:BoardgamesServiceCodePipelineServiceRole", 
+                    "OutputKey": "CodePipelineRole", 
+                    "OutputValue": "arn:aws:iam::105667908449:role/BoardgamesServiceCodePipelineServiceRole"
+                }, 
+                {
+                    "Description": "REPLACE_ME_ECS_SERVICE_ROLE_ARN", 
+                    "ExportName": "BoardgamesCoreStack:EcsServiceRole", 
+                    "OutputKey": "EcsServiceRole", 
+                    "OutputValue": "arn:aws:iam::105667908449:role/BoardgamesCoreStack-EcsServiceRole-1MSNQQBY3U7DE"
+                }, 
+                {
+                    "Description": "REPLACE_ME_PRIVATE_SUBNET_ONE", 
+                    "ExportName": "BoardgamesCoreStack:PrivateSubnetOne", 
+                    "OutputKey": "PrivateSubnetOne", 
+                    "OutputValue": "subnet-04a3f81e25ca6071a"
+                }
+            ], 
+            "EnableTerminationProtection": false, 
+            "CreationTime": "2021-11-15T17:41:33.711Z", 
+            "Capabilities": [
+                "CAPABILITY_NAMED_IAM"
+            ], 
+            "StackName": "BoardgamesCoreStack", 
+            "NotificationARNs": [], 
+            "StackStatus": "CREATE_COMPLETE", 
+            "DisableRollback": false, 
+            "RollbackConfiguration": {}
+        }
+    ]
+}

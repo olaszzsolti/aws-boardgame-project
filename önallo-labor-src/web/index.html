@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+
+    Társasjáték gyüjtemény, ahol ki lehet listázni társasokat, 
+    lehet szűrni feltételek alapján és lehet likeolni őket, bejelentkezés után.
+  -->
+  <head>
+    <div style="text-align: center">
+     <h2 style="font-size:100; color:black; margin:10px;">Üdv a Társasgyűjteményben!</h2>
+    </div>
+    <title>Társasjátékok</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.135.0.min.js"></script>
+    <script src="js/aws-cognito-sdk.min.js"></script>
+    <script src="js/amazon-cognito-identity.min.js"></script>
+  </head>
+  <body ng-app="boardgamesApp" style="background-color:#defae0">
+    <style>
+      @media (max-width: 800px) {
+      	img {
+          max-width: 300px;
+      	}
+      }
+    </style>
+    <br>
+    <div style="text-align: center">
+      <img src="https://boardgamescollection.s3.amazonaws.com/like/boardgames.jpg" width="700px" height="300px" align="center">
+    </div>
+    <div class="container">
+        <div class='btn-toolbar float-right'>
+          <button type="button" id="logInButton" class="btn btn-info btn-lgd-none" data-toggle="modal" data-target="#loginModal" style="background-color: #4CAF50" >Bejelentkezés / Regisztráció</button>
+          <button type="button" id="logOutButton" class="btn btn-danger btn-lg d-none"  >Kijelentkezés</button>
+        </div>
+    </div>
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header" style="background-color:#defae0">
+            <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Bezár</span>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body" style="background-color:#defae0">
+          <form id="loginForm">
+            <input type="text" id ="email" name="email" placeholder="Email" />
+            <input type="password" id="pwd" name="pwd" placeholder="Jelszó" />
+            <input type="submit" id="login-modal-button" name="login" class="btn btn-info" style="background-color: #4CAF50" value="Belépés"/ >
+          </form>
+          <div class="login-help">
+            <a href="register.html" style="color:black">Regisztráció</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="container" ng-controller="boardgamesFilterController">
+      <div id="filterMenu">
+        <ul class="nav nav-pills">
+          <li class="nav-item " >
+            <button type="button" class="btn btn-info btn-lgd-none" ng-click="removeFilter()" style="color:black">Mutass mindent</button>
+          </li>
+          &nbsp;
+          <li class="nav-item dropdown" ng-repeat="filterCategory in filterOptionsList.categories">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!" role="button" aria-haspopup="true" aria-expanded="false" style="color:black">{{filterCategory.title}}</a>
+            <div class="dropdown-menu" style="background-color:#defae0">
+              <button class="dropdown-item" ng-repeat="filterCategorySelection in filterCategory.selections" ng-click="queryBoardgames(filterCategory.title, filterCategorySelection)" style="background-color:#defae0">{{filterCategorySelection}}</button>
+            </div>
+          </li>
+          &nbsp;
+          
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div id="boardgamesGrid" class="row" ng-controller="boardgamesListController">
+        <div  ng-repeat="boardgame in boardgames">
+            <br>
+            <p align="center">
+              <strong> {{boardgame.name}}</strong>
+              <br>
+              <img src="{{boardgame.thumbImageUri}}" alt="{{boardgame.Name}}">
+              <br>
+              <br>
+              <button type="button" style="background-color:black" class="btn btn-primary" data-toggle="modal" data-target="#profileModal" data-boardgameid="{{boardgame.boardgamesId}}">Bővebben</button>
+            </p>
+            <p>
+              <br>
+              <b>Típus:</b> {{boardgame.type}}
+              <br>
+              <b>Gyerek/Felnőtt:</b> {{boardgame.childadult}}
+              <br>
+              <b>Játék hossza:</b> {{boardgame.gamelength}}
+              <span style="float:right;">
+                <img id="{{boardgame.boardgamesId}}LikeIcon" ng-click="likeClicked(boardgame.boardgamesId)" src="https://boardgamescollection.s3.amazonaws.com/like/let%C3%B6lt%C3%A9s+(2).png" onmouseover="" style="cursor: pointer;">
+                <img id="{{boardgame.boardgamesId}}AlreadyLikedIcon" class="d-none" src="https://boardgamescollection.s3.amazonaws.com/like/let%C3%B6lt%C3%A9s+(3).png" >
+              </span>
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade bd-example-modal-lg" id="profileModal" tabindex="-1" aria-hidden="true" ng-controller="boardgameProfileController">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header" style="background-color:#defae0">
+            <h3>Társasjáték profil</h3>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+          </div>
+        <!-- Modal Body -->
+          <div class="modal-body" style="background-color:#defae0">
+            <p align="center">
+              <img id="profileImage" src="{{profileboardgame.profileImageUri}}" align="center" />
+            </p>
+            <br>
+            <p id="profileName"><b>Név:</b> {{profileboardgame.name}}</p>
+            <p id="profileType"><b>Típus:</b> {{profileboardgame.type}}</p>
+            <p id="profileChildAdult"><b>Kiknek ajánlott:</b> {{profileboardgame.childadult}} </p>
+            <p id="profileGameLength"><b>Játék hossza:</b> {{profileboardgame.gamelength}} </p>
+            <p id="profileYear"><b>Kiadás dátuma:</b> {{profileboardgame.year}}</p>
+            <p id="profileDescription"><b>Leírás:</b> {{profileboardgame.description}}</p>
+            <p id="profileLikes"><b>Likes:</b> {{profileboardgame.likes}}</p>
+            <p align="center">
+            </p>
+          </div>
+          <div class="modal-footer" style="background-color:#defae0">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezár</button>
+         </div>
+        </div>
+      </div>
+    </div>
+    <p>
+      <br>
+      <br>
+    </p>
+  </body>
+  <script>
+
+    var boardgamesApiEndpoint = 'https://mx19ks5e2b.execute-api.us-east-1.amazonaws.com/prod/'; 
+    var cognitoUserPoolId = 'us-east-1_0aQ5mIVym'; 
+    var cognitoUserPoolClientId = '7pstkmtiqq7vsj9t0mpkula1p2';
+    var awsRegion = 'us-east-1'; 
+
+    var app = angular.module('boardgamesApp', []);
+
+    var gridScope;
+
+    var filterScope;
+
+    var profileScope;
+
+    initializeStorage();
+
+    var configString = localStorage.getItem("awsConfig");
+    var config = JSON.parse(configString);
+    if(config != null) {
+      refreshAWSCredentials();
+      loggedInDisplay();
+    }
+
+    function loggedInDisplay() {
+      $("#loginModal").modal("hide");
+      $("#logInButton").addClass("d-none");
+      $("#logOutButton").removeClass("d-none");
+    }
+
+    function initializeStorage() {
+      var identityPoolId = cognitoUserPoolId;
+      var userPoolId = cognitoUserPoolId; 
+      var clientId = cognitoUserPoolClientId;
+      var loginPrefix = 'cognito-idp.' + awsRegion + '.amazonaws.com/' + identityPoolId;
+
+      localStorage.setItem('identityPoolId', identityPoolId);
+      localStorage.setItem('userPoolId', userPoolId);
+      localStorage.setItem('clientId', clientId);
+      localStorage.setItem('loginPrefix', loginPrefix);
+    }
+
+
+  $(document).on('click', '#logOutButton', function(event) {
+    localStorage.clear();
+    document.location.reload();
+  });
+
+
+    function loginUser() {
+
+      var userPoolId = localStorage.getItem('userPoolId');
+      var clientId = localStorage.getItem('clientId');
+      var identityPoolId = localStorage.getItem('identityPoolId');
+      var loginPrefix = localStorage.getItem('loginPrefix');
+
+      var poolData = {
+        UserPoolId : userPoolId,
+        ClientId : clientId
+      };
+      var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+      var email = document.getElementById('email').value;
+      var pwd = document.getElementById('pwd').value;
+
+      var authenticationData =
+      {
+        'UserName': email,
+        'Password': pwd
+      }
+      var userData = {
+        Username : email,
+        Pool : userPool
+      };
+
+      var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+      var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+      cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: function (result) {
+          console.log('access token + \n' + result.getAccessToken().getJwtToken());
+
+          var sessionTokens =
+          {
+            IdToken: result.getIdToken(),
+            AccessToken: result.getAccessToken(),
+            RefreshToken: result.getRefreshToken()
+          };
+          localStorage.setItem('sessionTokens', JSON.stringify(sessionTokens));
+
+         
+          AWS.config.region = 'us-east-1';
+          AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId : identityPoolId, 
+            Logins : {
+            
+               loginPrefix : sessionTokens.IdToken.jwtToken
+            }
+          });
+          localStorage.setItem('awsConfig', JSON.stringify(AWS.config));
+          localStorage.setItem('email', email);
+
+          cognitoUser.getUserAttributes(function(err, result) {
+            if (err) {
+                alert(err);
+                return;
+            }
+            for (i = 0; i < result.length; i++) {
+                console.log('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
+                if (result[i].getName() == 'sub') {
+                  console.log('Overwriting userId into local storage');
+                  localStorage.setItem('userId', result[i].getValue());
+                }
+            }
+          });
+
+          loggedInDisplay();
+        },
+
+        onFailure: function(err) {
+          alert(err.message);
+        },
+
+      });
+    }
+
+    function refreshAWSCredentials() {
+
+      var userPoolId = localStorage.getItem('userPoolId');
+      var clientId = localStorage.getItem('clientId');
+      var identityPoolId = localStorage.getItem('identityPoolId');
+      var loginPrefix = localStorage.getItem('loginPrefix');
+
+      var poolData = {
+        UserPoolId : userPoolId, 
+        ClientId : clientId 
+      };
+      var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+      var cognitoUser = userPool.getCurrentUser();
+
+      if (cognitoUser != null) {
+            cognitoUser.getSession(function(err, result) {
+                if (result) {
+                    console.log('You are now logged in.');
+                    cognitoUser.refreshSession(result.getRefreshToken(), function(err, result) {
+
+                        if (err) {
+                            console.log('In the err: '+err);
+                        }
+                        else{
+                            localStorage.setItem('awsConfig', JSON.stringify(AWS.config));
+                            var sessionTokens =
+                            {
+                              IdToken: result.getIdToken(),
+                              AccessToken: result.getAccessToken(),
+                              RefreshToken: result.getRefreshToken()
+                            };
+                            localStorage.setItem("sessionTokens", JSON.stringify(sessionTokens));
+
+                        }
+                    });
+
+                }
+            });
+        }
+
+
+    }
+
+    $("#loginForm").submit(function(event) {
+      event.preventDefault();
+      loginUser();
+    });
+
+    app.controller('clearFilterController', function($scope) {
+    });
+
+    app.controller('boardgamesFilterController', function($scope) {
+
+      filterScope = $scope;
+
+      // itt van lehetőség kibővíteni a filter menüket
+      $scope.filterOptionsList =
+       {
+         "categories": [
+           {
+             "title": "Kinek ajánlott",
+             "selections":  [
+               "Gyerek",
+               "Felnőtt",
+               "Mindkettő"
+             ]
+           },
+           {
+             "title": "Játék hossza",
+             "selections":  [
+               "Rövid",
+               "Közepes",
+               "Hosszú"
+             ]
+           }
+         ]
+       };
+
+       $scope.removeFilter = function() {
+         allboardgames = getAllboardgames(applyGridScope);
+       }
+
+       $scope.queryboardgames = function(filterCategory, filterValue) {
+
+           var filterCategoryQS = "";
+           if (filterCategory==="Kinek ajánlott") {
+             filterCategoryQS = "ChildAdult";
+           } else {
+             filterCategoryQS = "GameLength"
+           }
+           var boardgamesApi = boardgamesApiEndpoint + '/boardgames?' + 'filter=' + filterCategoryQS + "&value=" + filterValue;
+
+           $.ajax({
+             url : boardgamesApi,
+             type : 'GET',
+             success : function(response) {
+               applyGridScope(response.boardgames)
+             },
+             error : function(response) {
+               console.log("could not retrieve boardgames list.");
+               if (response.status == "401") {
+                  refreshAWSCredentials();
+                }
+             }
+           });
+       }
+
+
+
+    });
+
+    app.controller('boardgamesListController', function($scope) {
+
+      gridScope = $scope;
+
+      getAllboardgames(applyGridScope);
+
+
+
+      $scope.likeClicked = function(boardgamesId) {
+        console.log("clicked: " + boardgamesId);
+        likeboardgame(boardgamesId, updateLikeIcons);
+      }
+
+    });
+
+
+    $('#profileModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var boardgamesId = button.data('boardgamesid');
+      getboardgame(boardgamesId, updateModalText);
+
+
+    });
+
+
+    function updateLikeIcons(boardgamesId) {
+
+      likeIconId = "#" + boardgamesId + "LikeIcon";
+      $(likeIconId).addClass("d-none");
+
+      alreadyLikedIconId = "#" + boardgamesId + "AlreadyLikedIcon";
+      $(alreadyLikedIconId).removeClass("d-none");
+
+    }
+
+    function applyGridScope(boardgamesList) {
+      gridScope.boardgames = boardgamesList;
+      gridScope.$apply();
+    }
+
+    function applyProfileScope(boardgame) {
+      profileScope.profileboardgame = boardgame;
+      profileScope.$apply();
+    }
+
+    function likeboardgame(boardgamesId, callback) {
+
+      try {
+        var boardgamesApi = boardgamesApiEndpoint + '/boardgames/' + boardgamesId + "/like";
+
+        var sessionTokensString = localStorage.getItem('sessionTokens');
+        var sessionTokens = JSON.parse(sessionTokensString);
+        var IdToken = sessionTokens.IdToken;
+        var idJwt = IdToken.jwtToken;
+
+        $.ajax({
+          url : boardgamesApi,
+          type : 'POST',
+          headers : {'Authorization' : idJwt },
+          success : function(response) {
+            console.log("here" + boardgamesId);
+            callback(boardgamesId);
+          },
+          error : function(response) {
+            console.log("could not like boardgame");
+            console.log(response);
+            if (response.status == "401") {
+               refreshAWSCredentials();
+             }
+          }
+        });
+      } catch(err) {
+        alert("Be kell jelentkezned hogy lájkolj egy játékot.");
+        console.log(err.message);
+      }
+
+    }
+
+
+
+    function getAllboardgames(callback) {
+
+      var boardgamesApi = boardgamesApiEndpoint + '/boardgames';
+
+      $.ajax({
+        url : boardgamesApi,
+        type : 'GET',
+        success : function(response) {
+          callback(response.boardgames);
+        },
+        error : function(response) {
+          console.log("could not retrieve boardgames list.");
+          if (response.status == "401") {
+             refreshAWSCredentials();
+           }
+        }
+      });
+    }
+
+    function getboardgame(boardgamesId, callback) {
+
+      var boardgamesApi = boardgamesApiEndpoint + '/boardgame/' + boardgamesId;
+
+      $.ajax({
+        url : boardgamesApi,
+        type : 'GET',
+        success : function(response) {
+          callback(response);
+        },
+        error : function(response) {
+          console.log("could not retrieve boardgames list.");
+          if (response.status == "401") {
+             refreshAWSCredentials();
+           }
+        }
+      });
+    }
+
+
+  </script>
+</html>
